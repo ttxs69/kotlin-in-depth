@@ -8,8 +8,6 @@ terminator.kexe: hello.kt
 	JAVA_OPTS=$(JAVA_OPTS_VALUE) ${KONANC} \
 	-g \
 	-Xbinary=stripDebugInfoFromNativeLibs=false \
-	-no-endorsed-libs -nostdlib \
-	-Xbinary=linkRuntime=raw \
 	-Xverbose-phases=ObjectFiles \
 	-Xsave-llvm-ir-after=LinkBitcodeDependencies -Xsave-llvm-ir-directory=/tmp \
     $^ -o $@
