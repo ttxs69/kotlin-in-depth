@@ -6,14 +6,14 @@ endif
 
 terminator.kexe: hello.kt
 	JAVA_OPTS=$(JAVA_OPTS_VALUE) ${KONANC} \
+	-verbose \
 	-g \
-	-Xbinary=stripDebugInfoFromNativeLibs=false \
 	-Xverbose-phases=ObjectFiles \
-	-Xsave-llvm-ir-after=LinkBitcodeDependencies -Xsave-llvm-ir-directory=/tmp \
+	-Xsave-llvm-ir-after=LinkBitcodeDependencies -Xsave-llvm-ir-directory=. \
     $^ -o $@
 
 global-symbols.txt: terminator
 	nm -g -U $^ > $@
 
 clean:
-	rm -rf terminator.kexe terminator.kexe.dSYM global-symbols.txt
+	rm -rf terminator.kexe terminator.kexe.dSYM *.ll
